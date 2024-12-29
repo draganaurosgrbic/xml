@@ -1,0 +1,77 @@
+<app-form-container>
+    <h3>Obaveštenje o stavljanju dokumenta na uvid i izdavanju kopije</h3><br><br>
+    <form [formGroup]="obavestenjeForm">
+
+        <div [class.disabled]="savePending">
+            <mat-form-field> 
+                <mat-label>Datum uvida</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="datumUvida" 
+                placeholder="Unesite datum uvida"
+                [matDatepicker]="datumUvida">
+                <mat-datepicker-toggle matSuffix [for]="datumUvida"></mat-datepicker-toggle>
+                <mat-datepicker #datumUvida></mat-datepicker>
+                <mat-error>
+                    Morate uneti validan datum uvida!
+                </mat-error>    
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Početak uvida</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="pocetak"
+                placeholder="Unesite početak uvida (hh:mm)">
+                <mat-error>
+                    Početak uvida je obavezan!
+                </mat-error>    
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Kraj uvida</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="kraj"
+                placeholder="Unesite kraj uvida (hh:mm)">
+                <mat-error>
+                    Kraj uvida je obavezan!
+                </mat-error>    
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Broj kancelarije</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="kancelarija"
+                placeholder="Unesite broj kancelarije">
+                <mat-error>
+                    Broj kancelarije je obavezan!
+                </mat-error>    
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Cena kopije</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="kopija"
+                placeholder="Unesite cenu kopiju">
+                <mat-error>
+                    Cena kopije je obavezna!
+                </mat-error>    
+            </mat-form-field>
+            <br><mat-label>Kliknite na 'Detalji' tag kako biste editovali opis tražene informacije:</mat-label>
+            <div id="obavestenjeEditor" class="xonomy"></div>
+        </div>
+        <br><br>
+        <app-center-container>
+            <button 
+            *ngIf="!savePending"
+            mat-raised-button 
+            color="primary"
+            (click)="save()">Pošalji obaveštenje</button>
+            <app-spinner-button *ngIf="savePending"></app-spinner-button>
+        </app-center-container>
+    </form>
+</app-form-container>

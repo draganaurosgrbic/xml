@@ -1,0 +1,80 @@
+<mat-toolbar color="primary" class="mat-elevation-z24">
+    <span>
+        <button
+        *ngIf="listPage"
+        class="toggler"
+        mat-icon-button 
+        (click)="drawerToggle()">
+            <mat-icon matTooltip="Pretraga">menu</mat-icon>
+        </button>
+        <button 
+        matTooltip="Zahtev za informacijama od javnog značaja"
+        *ngIf="!auth && uloga === 'gradjanin'"
+        mat-button
+        [routerLink]="'/zahtev-form'">
+            Podnesi zahtev
+        </button>
+        <button 
+        matTooltip="Lista podnetih zahteva"
+        *ngIf="!auth"
+        mat-button
+        [routerLink]="'/zahtev-list'">
+            Zahtevi
+        </button>
+        <button 
+        matTooltip="Lista izdatih odluka"
+        *ngIf="!auth"
+        mat-button
+        [routerLink]="'/odluka-list'">
+            Odluke
+        </button>
+        <button 
+        matTooltip="Lista podnetih žalbi"
+        *ngIf="!auth && uloga === 'sluzbenik'"
+        mat-button
+        [routerLink]="'/zalba-list'">
+            Žalbe
+        </button>
+        <button 
+        matTooltip="Lista odgovora na žalbe"
+        *ngIf="!auth && uloga === 'sluzbenik'"
+        mat-button
+        [routerLink]="'/odgovor-list'">
+            Odgovori
+        </button>
+        <button 
+        matTooltip="Lista izdatih rešenja"
+        *ngIf="!auth && uloga === 'sluzbenik'"
+        mat-button
+        [routerLink]="'/resenje-list'">
+            Rešenja
+        </button>
+        <button 
+        matTooltip="Lista podnetih izveštaja"
+        *ngIf="!auth && uloga === 'sluzbenik'"
+        mat-button
+        [routerLink]="'/izvestaj-list'">
+            Izveštaji
+        </button>
+    </span>
+    <span class="details">
+        <button 
+        *ngIf="auth"
+        mat-button [routerLink]="login ? './register' : './login'">
+            <mat-icon>{{login ? 'person_add' : 'login'}}</mat-icon>
+            {{login ? 'Registracija' : 'Prijava'}}
+        </button>   
+        <span *ngIf="!auth">
+            {{imePrezime}}
+        </span>
+        <button *ngIf="!auth" mat-icon-button [matMenuTriggerFor]="more">
+            <mat-icon matTooltip="više">more_vert</mat-icon>
+        </button>
+        <mat-menu #more="matMenu">
+            <button mat-menu-item (click)="signOut()">
+                <mat-icon>logout</mat-icon>
+                <span>Odjava</span>
+            </button>
+        </mat-menu>
+    </span>
+</mat-toolbar>
