@@ -1,0 +1,13 @@
+<odluka:Odluka
+xmlns="https://github.com/draganagrbic998/xml/osnova"
+xmlns:odluka="https://github.com/draganagrbic998/xml/odluka"
+xmlns:pred="https://github.com/draganagrbic998/xml/predikat/"
+xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:type=""
+about=""
+rel="pred:vlasnik"
+href="">
+	<datum property="pred:datum" datatype="xs:string"></datum>
+	<odluka:datumZahteva rel="pred:zahtev" href=""></odluka:datumZahteva>
+</odluka:Odluka>

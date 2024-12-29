@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OdlukaService"
+	targetNamespace="http://demo.example.com/ws/odluka"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://demo.example.com/ws/odluka"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="http://demo.example.com/ws/odluka"
+			attributeFormDefault="unqualified" elementFormDefault="unqualified"
+			targetNamespace="http://demo.example.com/ws/odluka">
+			<xs:element name="getOdlukaRequest" type="xs:string" />
+			<xs:element name="getOdlukaResponse" type="xs:string" />
+			<xs:element name="getOdlukaHtmlRequest" type="xs:string" />
+			<xs:element name="getOdlukaHtmlResponse" type="xs:string" />
+			<xs:element name="getOdlukaPdfRequest" type="xs:string" />
+			<xs:element name="getOdlukaPdfResponse" type="xs:base64Binary" />
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getOdlukaRequest">
+		<wsdl:part name="getOdlukaRequest" element="tns:getOdlukaRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOdlukaResponse">
+		<wsdl:part name="getOdlukaResponse" element="tns:getOdlukaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOdlukaHtmlRequest">
+		<wsdl:part name="getOdlukaHtmlRequest" element="tns:getOdlukaHtmlRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOdlukaHtmlResponse">
+		<wsdl:part name="getOdlukaHtmlResponse" element="tns:getOdlukaHtmlResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOdlukaPdfRequest">
+		<wsdl:part name="getOdlukaPdfRequest" element="tns:getOdlukaPdfRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getOdlukaPdfResponse">
+		<wsdl:part name="getOdlukaPdfResponse" element="tns:getOdlukaPdfResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="Odluka">
+		<wsdl:operation name="getOdluka">
+			<wsdl:input name="getOdlukaRequest" message="tns:getOdlukaRequest">
+			</wsdl:input>
+			<wsdl:output name="getOdlukaResponse" message="tns:getOdlukaResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOdlukaHtml">
+			<wsdl:input name="getOdlukaHtmlRequest" message="tns:getOdlukaHtmlRequest">
+			</wsdl:input>
+			<wsdl:output name="getOdlukaHtmlResponse" message="tns:getOdlukaHtmlResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOdlukaPdf">
+			<wsdl:input name="getOdlukaPdfRequest" message="tns:getOdlukaPdfRequest">
+			</wsdl:input>
+			<wsdl:output name="getOdlukaPdfResponse" message="tns:getOdlukaPdfResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="OdlukaServiceSoapBinding"
+		type="tns:Odluka">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getOdluka">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getOdlukaRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getOdlukaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOdlukaHtml">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getOdlukaHtmlRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getOdlukaHtmlResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOdlukaPdf">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getOdlukaPdfRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getOdlukaPdfResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OdlukaService">
+		<wsdl:port name="OdlukaPort"
+			binding="tns:OdlukaServiceSoapBinding">
+			<soap:address
+				location="http://localhost:8082/OdlukaPort" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
