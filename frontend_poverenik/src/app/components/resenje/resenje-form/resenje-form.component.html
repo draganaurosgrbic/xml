@@ -1,0 +1,31 @@
+<app-form-container>
+    <h3>Rešenje o žalbi na organ vlasti</h3><br><br>
+    <form [formGroup]="resenjeForm">
+
+        <div [class.disabled]="savePending">
+            <mat-form-field>
+                <mat-label>Status rešenja: </mat-label>
+                <mat-select formControlName="status">
+                    <mat-option [value]="'odbijeno'">
+                        žalba se odbija
+                    </mat-option>
+                    <mat-option [value]="'odobreno'">
+                        žalba se prihvata
+                    </mat-option>
+                </mat-select>                
+            </mat-form-field>      
+            <br><mat-label>Kliknite na 'Dispozitiva' i 'Obrazloženje' tag kako biste editovali odluku na žalbu:</mat-label>
+            <div id="resenjeEditor" class="xonomy"></div>
+        </div>
+
+        <br><br>
+        <app-center-container>
+            <button 
+            *ngIf="!savePending"
+            mat-raised-button 
+            color="primary"
+            (click)="save()">Pošalji rešenje</button>
+            <app-spinner-button *ngIf="savePending"></app-spinner-button>
+        </app-center-container>
+    </form>
+</app-form-container>

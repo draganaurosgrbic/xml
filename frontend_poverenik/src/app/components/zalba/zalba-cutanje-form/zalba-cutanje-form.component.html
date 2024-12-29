@@ -1,0 +1,71 @@
+<app-form-container>
+    <h3>Zalba na ćutanje organa vlasti</h3><br><br>
+    <form [formGroup]="zalbaForm">
+        <div [class.disabled]="savePending">
+            <mat-form-field>
+                <mat-label>Naziv organa vlasti</mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="naziv" 
+                placeholder="Unesite naziv organa vlasti">
+                <mat-error>
+                    Naziv organa vlasti je obavezan!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Tip ćutanja: </mat-label>
+                <mat-select formControlName="tipCutanja">
+                    <mat-option [value]="'nije postupio'">
+                        nije postupio
+                    </mat-option>
+                    <mat-option [value]="'nije postupio u zakonskom roku'">
+                        nije postupio u zakonskom roku
+                    </mat-option>
+                    <mat-option [value]="'nije postupio u celosti'">
+                        nije postupio u celosti
+                    </mat-option>
+                </mat-select>                
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>
+                    {{zalbaDelimicnost ? 'Broj obaveštenja' : 'Broj zahteva'}}
+                </mat-label>
+                <input 
+                matInput 
+                autocomplete="off"
+                formControlName="brojDokumenta"
+                [placeholder]="zalbaDelimicnost ? 'Unesite broj obaveštenja' : 'Unesite broj zahteva'">
+                <mat-error>
+                    {{
+                        zalbaDelimicnost ? 'Broj obaveštenja je obavezan!' : 'Broj zahteva je obavezan!'
+                    }}
+                </mat-error>    
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Lozinka za autentifikaciju na portalu organa vlasti</mat-label>
+                <input 
+                type="password" 
+                matInput 
+                autocomplete="off"
+                formControlName="lozinka"
+                placeholder="Unesite lozinku">
+                <mat-error>
+                    Lozinka je obavezna!
+                </mat-error>    
+            </mat-form-field>
+            <br><mat-label>Kliknite na 'Detalji' tag kako biste editovali deo kojim niste zadovoljni:</mat-label>
+            <div id="zalbaCutanjeEditor" class="xonomy"></div>
+        </div>    
+        <br><br>
+        <app-center-container>
+            <button 
+            *ngIf="!savePending"
+            mat-raised-button 
+            color="primary"
+            (click)="save()">Pošalji zalbu</button>
+            <app-spinner-button *ngIf="savePending"></app-spinner-button>
+        </app-center-container>
+    </form>
+</app-form-container>
