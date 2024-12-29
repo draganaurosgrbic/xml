@@ -1,0 +1,20 @@
+<zalba:Zalba
+xmlns="https://github.com/draganagrbic998/xml/osnova"
+xmlns:zalba="https://github.com/draganagrbic998/xml/zalba"
+xmlns:pred="https://github.com/draganagrbic998/xml/predikat/"
+xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:type=""
+about=""
+rel="pred:vlasnik"
+href="">
+	<datum property="pred:datum" datatype="xs:string"></datum>
+	<zalba:status property="pred:status" datatype="xs:string">cekanje</zalba:status>
+	<zalba:PodaciZahteva rel="pred:zahtev" href="">
+		<datum></datum>
+	</zalba:PodaciZahteva>
+	<zalba:tipCutanja></zalba:tipCutanja>
+	<zalba:PodaciOdluke rel="pred:odluka" href="">
+		<datum></datum>
+	</zalba:PodaciOdluke>
+</zalba:Zalba>

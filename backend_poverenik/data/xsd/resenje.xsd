@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://github.com/draganagrbic998/xml/resenje"
+    xmlns:osnova="https://github.com/draganagrbic998/xml/osnova"
+    xmlns:resenje="https://github.com/draganagrbic998/xml/resenje">
+
+    <xs:import namespace="https://github.com/draganagrbic998/xml/osnova" schemaLocation="osnova.xsd"/>
+    <xs:complexType name="TResenje">
+        <xs:complexContent>
+            <xs:extension base="osnova:TDokument">
+                <xs:sequence>
+                    <xs:element name="status">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="resenje:TStatus">
+                                    <xs:attribute name="property">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="pred:status"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="datatype">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="xs:string"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Odbrana" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="1" name="datumOdbrane">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:date">
+                                                <xs:attribute name="rel">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="pred:odgovor"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="href"
+                                                  type="osnova:TRequiredString"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element ref="osnova:Detalji"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Odluka" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Dispozitiva" type="resenje:TPasusi"/>
+                                <xs:element name="Obrazlozenje" type="resenje:TPasusi"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element ref="osnova:Osoba"/>
+                    <xs:element ref="osnova:OrganVlasti"/>
+                    <xs:element name="PodaciZahteva" type="osnova:TPodaci"> </xs:element>
+                    <xs:element name="PodaciZalbe">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="tipZalbe">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="resenje:TZalba">
+                                                <xs:attribute name="property">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="pred:tipZalbe"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="datatype">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="xs:string"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="datumZalbe">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:date">
+                                                <xs:attribute name="rel">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:string">
+                                                  <xs:enumeration value="pred:zalba"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="href"
+                                                  type="osnova:TRequiredString"/>
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="datumProsledjivanja" type="xs:date" minOccurs="0"/>
+                                <xs:element minOccurs="0" name="datumOtkazivanja" type="xs:date"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="PodaciOdluke" minOccurs="0" type="osnova:TPodaci">
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Resenje" type="resenje:TResenje"/>
+    <xs:complexType name="TPasusi">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="Pasus" minOccurs="0">
+                <xs:complexType mixed="true">
+                    <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                        <xs:element name="zakon" type="xs:string"> </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="odobreno"/>
+            <xs:enumeration value="odbijeno"/>
+            <xs:enumeration value="odustato"/>
+            <xs:enumeration value="obavesteno"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TZalba">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="cutanje"/>
+            <xs:enumeration value="delimicnost"/>
+            <xs:enumeration value="odluka"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
